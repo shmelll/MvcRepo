@@ -1,0 +1,51 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    @Html.Hidden("RedirectTo", Url.Action("Login", "Account"));
+    <div align="right">
+        <h2>Чат-комната</h2>
+
+        <div class="main">
+            @{var name = @User.Identity.Name;  }
+            <div id="loginBlock">
+                <input id="txtUserName" type="hidden" value=@name>
+                @{ if (User.Identity.IsAuthenticated)
+                    {
+                        <input id="btnLogin" type="button" value="Войти" />
+                    }
+                    else
+                    {
+                        <input id="redirectToAutorize" type="button" value="Авторизоваться" />
+                    }
+                }
+            </div>
+            <div id="chatBody">
+                <div id="header"></div>
+                <div id="inputForm">
+                    <input type="text" id="message" />
+                    <input type="button" id="sendmessage" value="Отправить" />
+                </div>
+                <div id="chatroom" style="overflow:auto;height:500px;text-align:left;width:350px;word-break: break-all;
+"></div>
+
+                <div id="chatusers">
+                    <p><b>Все пользователи</b></p>
+                </div>
+            </div>
+            <input id="hdId" type="hidden" />
+            <input id="username" type="hidden" />
+        </div>
+    </div>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <!--Ссылка на библиотеку SignalR -->
+    <script src="~/Scripts/jquery.signalR-2.2.3.min.js"></script>
+    <!--Ссылка на автоматически сгенерированный скрипт хаба SignalR -->
+    <script src="~/signalr/hubs"></script>
+    <script src="~/Scripts/util.js"></script>
+</body>
+</html>
